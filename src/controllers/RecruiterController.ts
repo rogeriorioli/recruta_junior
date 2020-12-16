@@ -2,7 +2,11 @@ import {Request , Response } from 'express'
 import { v4 } from "uuid";
 
 import db from '../database/connection'
-
+interface LoginData {
+    email: string,
+    password: string,
+    username: string
+}
 
 
 export default class RecruiterController {
@@ -12,7 +16,7 @@ export default class RecruiterController {
             email,
             password,
             username
-        } = req.body
+        } : LoginData = req.body
         
         const user = await db('recruiter')
         .column('id')

@@ -3,7 +3,10 @@ import {Request , Response } from 'express'
 import { v4 } from "uuid";
 
 import db from '../database/connection'
-
+interface LoginData {
+    email: string,
+    password: string
+}
 
 export default class CandidateController {
    async create(req : Request, res: Response)  {
@@ -11,7 +14,7 @@ export default class CandidateController {
         const {
             email,
             password
-        } = req.body
+        } : LoginData = req.body
 
         const user = await db('candidate')
         .column('id')
