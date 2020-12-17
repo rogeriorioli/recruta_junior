@@ -2,9 +2,11 @@ import { Router } from 'express';
 import CandidateController from '../controllers/CandidateController';
 import CandidateLoginController from '../controllers/CandidateLoginController';
 import CorporateController from '../controllers/CorporateController';
+import JobController from '../controllers/JobController';
 import ProfileController from '../controllers/ProfileController';
 import RecruiterController from '../controllers/RecruiterController';
 import RecruiterLoginController from '../controllers/RecruiterLoginController';
+import ResumeController from '../controllers/ResumeController';
 
 
 const authMiddleware = require('../middleware/Auth')
@@ -17,12 +19,23 @@ const corporateController = new CorporateController
 const recruiterLoginController = new RecruiterLoginController
 const candidateLoginController = new CandidateLoginController
 const profileController = new ProfileController
+const jobcontroller = new JobController
+const resumeController = new ResumeController
 
+
+//post
 routes.post('/recruiter', recruiterController.create);
-routes.delete('/recruiter/:id', recruiterController.delete);
 routes.post('/corpdata', authMiddleware, corporateController.create);
 routes.post('/candidate', candidateController.create);
 routes.post('/candidateprofile', profileController.create);
+routes.post('/job', jobcontroller.create);
+routes.post('/resume', resumeController.create);
+
+//update
+
+
+//delete
+routes.delete('/recruiter/:id', recruiterController.delete);
 routes.delete('/candidate/:id', candidateController.delete);
 
 
