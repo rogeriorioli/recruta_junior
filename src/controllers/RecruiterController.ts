@@ -29,6 +29,7 @@ export default class RecruiterController {
                 email, 
                 password,
                 username,
+                user_type : 'recruiter'
 
             })
             return res.status(201).json({id})

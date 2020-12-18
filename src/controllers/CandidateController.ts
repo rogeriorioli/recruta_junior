@@ -5,7 +5,8 @@ import { v4 } from "uuid";
 import db from '../database/connection'
 interface LoginData {
     email: string,
-    password: string
+    password: string,
+    username: string
 }
 
 export default class CandidateController {
@@ -13,7 +14,8 @@ export default class CandidateController {
         const id = v4()
         const {
             email,
-            password
+            password,
+            username
         } : LoginData = req.body
 
         const user = await db('candidate')
@@ -25,7 +27,9 @@ export default class CandidateController {
             await db('candidate').insert({
                 id,
                 email, 
-                password
+                password,
+                username,
+                user_type : 'candidate'
             })
             return res.status(201).json({
                 message: "user successfully create",
