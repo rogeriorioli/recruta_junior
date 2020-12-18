@@ -12,6 +12,7 @@ interface LoginData {
 export default class CandidateController {
    async create(req : Request, res: Response)  {
         const id = v4()
+        const user_type: string = 'candidate'
         const {
             email,
             password,
@@ -29,11 +30,12 @@ export default class CandidateController {
                 email, 
                 password,
                 username,
-                user_type : 'candidate'
+                user_type
             })
             return res.status(201).json({
                 message: "user successfully create",
-                id:  id
+                id:  id,
+                user_type
                 
                 })
         }

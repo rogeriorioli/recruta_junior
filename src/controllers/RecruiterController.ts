@@ -12,6 +12,7 @@ interface LoginData {
 export default class RecruiterController {
    async create(req : Request, res: Response)  {
         const id = v4();
+        const user_type: string = 'recruiter'
         const {
             email,
             password,
@@ -29,10 +30,10 @@ export default class RecruiterController {
                 email, 
                 password,
                 username,
-                user_type : 'recruiter'
+                user_type
 
             })
-            return res.status(201).json({id})
+            return res.status(201).json({id, user_type})
         }
         return res.status(400).json({err : "user exist in our base"}) 
     }

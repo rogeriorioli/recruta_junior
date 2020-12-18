@@ -9,8 +9,6 @@ export async function up(knex: Knex): Promise<void> {
        table.date('born_date').notNullable();
        table.string('phone').notNullable();
        table.string('avatar').notNullable();
-       table.string('username').notNullable();
-       table.string('user_type').notNullable()
        table.text('description').notNullable();
        table.string('website')
        table.string('linkedin')
