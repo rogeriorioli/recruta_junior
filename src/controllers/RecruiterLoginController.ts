@@ -15,7 +15,7 @@ export default class RecruiterLoginController {
         const user = await db('recruiter')
         .where( 'email' , email)
         .where('password', password)
-        .select('email', 'password')
+        .select('email', 'password', 'id')
         .first()
         if(!user) {
             return res.status(400).json({err : 'user or password wrong'})
@@ -24,6 +24,6 @@ export default class RecruiterLoginController {
         const token = jwt.sign({email: user.email}, authConfig.secret, {
           expiresIn : 86400
         })
-        return res.json({user, token : token})
+          return res.json({permissions : {token : token , user: user.id}})
     }
 }

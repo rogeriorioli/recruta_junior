@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import multer from 'multer';
 import CandidateController from '../controllers/CandidateController';
 import CandidateLoginController from '../controllers/CandidateLoginController';
 import CorporateController from '../controllers/CorporateController';
@@ -7,7 +8,8 @@ import ProfileController from '../controllers/ProfileController';
 import RecruiterController from '../controllers/RecruiterController';
 import RecruiterLoginController from '../controllers/RecruiterLoginController';
 import ResumeController from '../controllers/ResumeController';
-
+import ImageController from '../controllers/imageController'
+import multerConfig = require('../config/multer.config')
 
 const authMiddleware = require('../middleware/Auth')
 
@@ -21,7 +23,7 @@ const candidateLoginController = new CandidateLoginController
 const profileController = new ProfileController
 const jobcontroller = new JobController
 const resumeController = new ResumeController
-
+const imageController = new ImageController
 
 //post
 routes.post('/recruiter', recruiterController.create);
@@ -43,6 +45,9 @@ routes.delete('/candidate/:id', candidateController.delete);
 routes.post('/authrecruiter', recruiterLoginController.authenticate )
 routes.post('/authcandidate', candidateLoginController .authenticate )
 
+const avatar = multer(multerConfig)
+
+routes.post('/image', avatar.single('avatar_url'), imageController.create)
 
 
 

@@ -1,5 +1,5 @@
 import {Request , Response } from 'express'
-
+import {multer} from 'multer'
 
 import { v4 } from "uuid";
 
@@ -10,7 +10,7 @@ interface CandidateProfile {
     name : string, 
     born_date : Date,
     phone : string,
-    avatar : string,
+    avatar : {},
     description : string,
     website? : string,
     linkedin? : string,
@@ -21,6 +21,7 @@ export default class ProfileController {
   public async create(req : Request, res: Response) {
         const token = req.headers.authorization
         const user_id = req.headers.userid
+        
         const { 
             name, 
             born_date,
