@@ -1,5 +1,4 @@
 import {Request , Response } from 'express'
-import {multer} from 'multer'
 
 import { v4 } from "uuid";
 

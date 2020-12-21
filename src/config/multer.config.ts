@@ -3,9 +3,6 @@ import path from 'path'
 import crypto from 'crypto'
 import multerS3 from 'multer-s3'
 import aws from 'aws-sdk'
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 const storageType = {
   local : multer.diskStorage({
@@ -25,11 +22,7 @@ const storageType = {
   }),
   //@ts-ignore
     s3: multerS3({
-        
-        s3 : new aws.S3({
-          accessKeyId : `${process.env.AWS_ACCESS_KEY}`,
-          secretAccessKey: `${process.env.AWS_SECRET_ACCESS_KEY}`,
-        }),
+        s3 : new aws.S3(),
         bucket : 'devrec',
         contentType : multerS3.AUTO_CONTENT_TYPE,
         acl : 'public-read',

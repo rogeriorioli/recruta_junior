@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "build" : "tsc"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",

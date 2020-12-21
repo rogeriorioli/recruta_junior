@@ -8,6 +8,8 @@ export async function up(knex: Knex): Promise<void> {
           table.text('title').nullable()
           table.text('resume').notNullable()
           table.specificType('skills', 'character varying(200)[]').notNullable()
+          table.timestamp('created_at').defaultTo(knex.fn.now())
+          table.timestamp('updated_at').defaultTo(knex.fn.now())
       })
 }
 
