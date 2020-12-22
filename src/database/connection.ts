@@ -1,15 +1,17 @@
+
 import knex from 'knex'
 
 
-const db = knex({
-    client: 'pg',
-    version: '13.1',
-  connection: {
-     host : 'localhost',
-      user : "docker",
-      password : 'docker',
-      database : 'recrurajr'
-  }
- });
+const config = require('../../dblocales')
 
- export default db;
+
+const db = knex({
+  client: 'pg',
+  version: '13.1',
+  connection:
+    config.development.database,
+})
+
+
+export default db;
+
