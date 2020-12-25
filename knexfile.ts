@@ -1,6 +1,6 @@
 import path from 'path'
 
-const config = require('../../dblocales')
+const config = require('./dblocales')
 
 module.exports = {
   client: 'pg',

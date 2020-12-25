@@ -41,13 +41,19 @@ routes.post('/resume', resumeController.create);
 //delete
 routes.delete('/recruiter/:id', recruiterController.delete);
 routes.delete('/candidate/:id', candidateController.delete);
+routes.delete('/job/:id', jobcontroller.delete)
 
+//get 
+routes.get('/jobs', jobcontroller.index)
+routes.get('/jobs/:userid', jobcontroller.indexByCorp)
 
 //auth
-routes.post('/authrecruiter', recruiterLoginController.authenticate )
-routes.post('/authcandidate', candidateLoginController .authenticate )
+routes.post('/authrecruiter', recruiterLoginController.authenticate)
+routes.post('/authcandidate', candidateLoginController.authenticate)
 
 const avatar = multer(multerConfig)
+
+
 
 routes.post('/user_avatar', avatar.single('avatar_url'), avatarController.create)
 
